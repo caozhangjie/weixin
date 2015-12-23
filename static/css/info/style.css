@@ -1,0 +1,35 @@
+body {
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+	margin:0;
+	padding:0;
+	background:url(../info/jog.jpg) no-repeat;
+	background-size:cover;
+	background-attachment: fixed;
+	background-position: center;
+}
+.set_goal_block {
+	margin: 30% auto;
+   	height: 80%;
+   	width: 80%;
+    	background: rgba(221, 221, 221, 0.32);
+    	font-family: 'Montserrat', sans-serif;
+    	border: 11px solid rgba(186, 165, 146, 0.18);
+    	text-align: center;
+}
+.header {
+	text-align:center;
+	margin-top:1%;
+}
+.header h1 {
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+	color:#9C8A6E;
+	font-size:100px;
+	text-transform:uppercase;
+	font-weight: 700;
+}
+input{
+	vertical-align: middle;
+	margin: auto auto;
+	height:80px;
+	width: 320px;
+}

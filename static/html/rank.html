@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <title>游戏龙虎榜</title>
+	<link rel="stylesheet" type="text/css" href="semantic/semantic.css">
+	<script>
+    		var openid;
+    		var nickname;
+    		var headimgurl;
+  	</script>
+	<script src="jquery.min.js"></script>
+	<script src="getuserinfo.js"></script>
+	<script src="semantic/semantic.min.js"></script>
+    <script src="rank/getRank.js?dddddddddd"></script>
+</head>
+<body style="background-color:#FFE4C4">
+	<br/>
+	<h1 class="ui center aligned dividing header">
+		<div class="content">
+			<i class="trophy icon"></i>
+			游戏排行榜
+		</div>
+	</h1>
+    <div class="ui three item stackable tabs menu">
+        <a id="todaybird" class="item" onclick="get_todayBird();">今日排行(Flappy Bird)</a>
+		<a id="todaysquare" class="item" onclick="get_todaySquare();">今日排行(2048)</a>
+        <a id="allbird" class="item" onclick="get_allBird();">总体排行(Flappy Bird)</a>
+		<a id="allsquare" class="item" onclick="get_allSquare();">总体排行(2048)</a>
+    </div>
+	<div class="ui inverted segment" style="background-color: #1E90FF">
+		<div id="rank_content" class="ui big inverted animated relaxed divided list"></div>
+	</div>
+
+    <div id="footer">
+        <div class="container">
+            <hr />
+            <p style="font-size:xx-middle;text-align: center">CopyRight &copy; 2015 珍环传</p>
+            <p style="font-size:xx-middle;text-align: center">All Rights Reserved</p>
+        </div>
+    </div>
+</body>
+</html>

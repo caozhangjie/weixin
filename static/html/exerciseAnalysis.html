@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link href="/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="/bootstrap/bootstrap-responsive.min.css" rel="stylesheet" />
+    <title>Exercise Analysis</title>
+</head>
+<body>
+
+    <div class="panel-group" id="accordion">
+        <!-- start week chart -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        过去7天数据统计
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" >
+                <div class="panel-body">
+                    <div style="float:left;margin: auto">
+                        <div id="7-days-dis" class="chart-holder" style="width:250px;height:200px"></div> <!-- /donut-chart -->
+                        <div style=";text-align:center">里程统计</div>
+                    </div>
+                    <div style="float:left;margin: auto">
+                        <div id="7-days-steps" class="chart-holder" style="width:250px;height:200px"></div> <!-- /donut-chart -->
+                        <div style=";text-align:center">步数统计</div>
+                    </div>
+                    <div style="float:left;margin: auto">
+                        <div id="7-days-speed" class="chart-holder" style="width:250px;height:200px"></div> <!-- /donut-chart -->
+                        <div style=";text-align:center">速度统计</div>
+                    </div>
+                    <div style="float:left;margin: auto">
+                        <div id="7-days-calories" class="chart-holder" style="width:250px;height:200px"></div> <!-- /donut-chart -->
+                        <div style=";text-align:center">消耗卡路里统计</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end week chart-->
+
+        <!-- start month chart -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                        过去30天数据统计
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse in" >
+                <div class="panel-body">
+                    <div style="float:left;margin: auto">
+                        <div id="30-days-dis" class="chart-holder" style="width:250px;height:200px"></div> <!-- /donut-chart -->
+                        <div style=";text-align:center">里程统计</div>
+                    </div>
+                    <div style="float:left;margin: auto">
+                        <div id="30-days-steps" class="chart-holder" style="width:250px;height:200px"></div> <!-- /donut-chart -->
+                        <div style=";text-align:center">步数统计</div>
+                    </div>
+                    <div style="float:left;margin: auto">
+                        <div id="30-days-speed" class="chart-holder" style="width:250px;height:200px"></div> <!-- /donut-chart -->
+                        <div style=";text-align:center">速度统计</div>
+                    </div>
+                    <div style="float:left;margin: auto">
+                        <div id="30-days-calories" class="chart-holder" style="width:250px;height:200px"></div> <!-- /donut-chart -->
+                        <div style=";text-align:center">消耗卡路里统计</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end month chart-->
+
+
+        <!-- start the analytic data -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        数据对比
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table class="table table-striped table-bordered table-hover table-condensed">
+
+                        <thead>
+                            <tr>
+                                <th>数据分析</th>
+                                <th>过去7天</th>
+                                <th>过去30天</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="active">
+                                <td>里程平均值</td>
+                                <td id="7-days-dis-avg">7</td>
+                                <td id="30-days-dis-avg">8</td>
+                            </tr>
+                            <tr class="success">
+                                <td>步数平均值</td>
+                                <td id="7-days-steps-avg">20</td>
+                                <td id="30-days-steps-avg">10</td>
+                            </tr>
+                            <tr class="warning">
+                                <td>速度平均值</td>
+                                <td id="7-days-speed-avg">5</td>
+                                <td id="30-days-speed-avg">6</td>
+                            </tr>
+                            <tr class="active">
+                                <td>卡路里平均值</td>
+                                <td id="7-days-calories-avg">2</td>
+                                <td id="30-days-calories-avg">2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- end the analytic data -->
+
+        <!-- start the expertise advice -->
+         <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                        专家建议
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div id="expertise-advise">
+
+                    </div>
+                    <!--
+                    根据yesterday-intensity和7-days-intensity判断运动强度
+                    0 不运动
+                    1 轻微
+                    2 中度
+                    3 稍强
+                    4 专业
+                    -->
+                </div>
+            </div>
+        </div>
+        <!-- end the expertise advice -->
+
+    </div>
+
+    <div id="footer">
+        <div class="container">
+		    <hr />
+            <p style="font-size:xx-small;text-align: center">CopyRight &copy; 2015 珍环传</p>
+            <p style="font-size:xx-small;text-align: center">All Rights Reserved</p>
+        </div> <!-- /container -->
+    </div> <!-- /footer -->
+    <script>
+        var openid;
+        var nickname;
+        var headimgurl;
+    </script>
+    <script src="/jquery/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src = "getuserinfo.js"></script>
+    <script src="/dataAnalysis/getExerciseData.js" charset="UTF-8"></script>
+    <script src="/jquery/jquery.flot.js" ></script>
+    <script src="/jquery/jquery.flot.pie.js"></script>
+    <script src="/jquery/jquery.flot.orderBars.js"></script>
+    <script src="/jquery/jquery.flot.resize.js"></script>
+    <script src="/bootstrap/bootstrap.js"></script>
+
+</body>
+</html>

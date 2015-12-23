@@ -1,0 +1,43 @@
+wechat_treasure_ring:
+  image: sheep94lion/wechat_treasure_ring:1.0
+  environment:
+    - PRODUCTION=True
+    - DB_NAME=wechat_treasure_ring
+    - DB_HOST=db
+    - DB_USER=wechat_treasure_ring
+    - DB_PASSWORD=$WECHAT_PASSWORD
+    - DB_PORT=3306
+    - SECRET_KEY=$SECRET_KEY
+    - SITE_DOMAIN=$SITE_DOMAIN
+    - APP_ID=$APP_ID
+    - APP_SECRET=$APP_SECRET
+  links:
+    - wtr_db
+  volumes:
+    - ./static:/usr/src/app/wechat_treasure_ring/static
+  privileged: true
+  restart: always
+wtr_db:
+  image: mysql/mysql-server:5.7
+  environment:
+    - MYSQL_ROOT_PASSWORD=$WECHAT_ROOT_PASSWORD
+    - MYSQL_DATABASE=wechat_treasure_ring
+    - MYSQL_USER=wechat_treasure_ring
+    - MYSQL_PASSWORD=$WECHAT_PASSWORD
+  volumes:
+    - ./datadir:/var/lib/mysql
+    - ./my.cnf:/etc/my.cnf
+  ports:
+    - "470005:3306"
+  restart: always
+wtr_web:
+  image: nginx:1.9.8
+  volumes:
+    - ./uwsgi_params:/etc/nginx/conf.d/uwsgi_params:ro
+    - ./wechat_treasure_ring.conf:/etc/nginx/conf.d/default.conf:ro
+    - ./static:/usr/share/nginx/static:ro
+  links:
+    - wechat_treasure_ring
+  ports:
+    - "4705:80"
+  restart: always

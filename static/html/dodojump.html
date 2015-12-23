@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>HTML5 Doodle Jump</title>
+        <link rel="stylesheet" href="dodojump/style.css">
+        <link rel="stylesheet" type="text/css" href="semantic/semantic.css">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+        <script src="jquery.min.js"></script>
+        <script src="getuserinfo.js"></script>
+        <script src="user_data.js"></script>
+        <script src="semantic/semantic.min.js"></script>
+        <script src="dodojump/prefixfree.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+
+        <canvas id="canvas">
+            Aww, your browser doesn't support HTML5!
+        </canvas>
+
+        <div id="mainMenu">
+            <h1>Dodo jump</h1>
+            <h3>By treasure ring team</h3>
+
+            <a class="button" href="javascript:start_game()">Play</a>
+        </div>
+
+        <div id="gameOverMenu">
+            <h1>game over!</h1>
+            <h3 id="go_score">you scored 0 points</h3>
+
+            <div id="list_title"  class="ui three item stackable tabs menu">
+                <a id="todaybird" class="item" onclick="get_todayRank();">今日排行</a>
+                <a id="allbird" class="item" onclick="get_allRank();">总体排行</a>
+            </div>
+            <div id="list_content"  class="ui inverted segment" style="background-color: #1E90FF">
+                <div id="rank_content" class="ui big inverted animated relaxed divided list"></div>
+            </div>
+
+            <a class="button" href="javascript:reset_game()">Restart</a>
+        </div>
+
+        <img id="sprite" src="dodojump/sprite.png"/>
+
+        <div id="scoreBoard">
+            <p id="score">0</p>
+        </div>
+
+        </div>
+        <div class="container">
+            <hr />
+            <p style="font-size:xx-small;text-align: center">CopyRight &copy; 2015 珍环传</p>
+            <p style="font-size:xx-small;text-align: center">All Rights Reserved</p>
+        </div> <!-- /container -->
+        <script src="dodojump/main.js?rewrrews"></script>
+    </body>
+</html>
