@@ -24,8 +24,9 @@ urlpatterns = [
     url(r'^data/register$', 'web_data.views.register'),
     url(r'^data/ifregistered/(.*)', 'web_data.views.ifregistered'),
     url(r'^data/sleepData', 'web_data.views.getSleepData'),
+    url(r'^data/getidregister', 'wechat_response.views.getid_register'),
     url(r'^data/ingamerank', 'web_data.views.ingame_rank'),
-    url(r'^data/gamerank', 'web_data.views.game_rank'),
+    url(r'^data/gamerank', 'web_data.views.get_game_rank'),
     url(r'^data/stepsinfo', 'web_data.views.steps_info'),
     url(r'^data/getsleepdata', 'web_data.views.get_sleepdata'),
     url(r'^data/getsportsdata', 'web_data.views.get_sportsdata'),
@@ -38,5 +39,6 @@ urlpatterns = [
     url(r'^data/addguesssubject', 'web_data.views.add_guess_subject'),
     url(r'^data/getguesssubject', 'web_data.views.get_guess_subject'),
     url(r'^data/calculate', 'web_data.views.calculate'),
-    url(r'^data/autosave', 'web_data.views.auto_save')
+    url(r'^data/autosave', 'web_data.views.auto_save'),
+    url(r'^data/freeze', 'web_data.views.freeze_activity'),
 ]

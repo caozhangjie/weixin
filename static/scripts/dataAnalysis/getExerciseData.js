@@ -2,12 +2,16 @@
  * Created by littlepig on 2015/11/30.
  */
 $(document).ready(function(){
-	$(function () {
-		$('#collapseOne').collapse('show');
-		$('#collapseTwo').collapse('show');
-		$('#collapseThree').collapse('show');
-		$('#collapseFour').collapse('show');
+	var code = getUrlParameter('code');
+	$('#collapseOne').collapse('show');
+	$('#collapseTwo').collapse('show');
+	$('#collapseThree').collapse('hide');
+	$('#collapseFour').collapse('hide');
+	$.getJSON("data/getsportsdata?code="+code, function(data){
+		openid = data.openid;
+		renderByJson(data.data);
 	});
+	/*
 	get_userinfo(function(data){
 		openid = data.openid;
 		nickname = data.nickname;
@@ -17,6 +21,7 @@ $(document).ready(function(){
 			renderByJson(sportsData);
 		})
 	});
+	*/
 })
 
 function draw(){
@@ -35,33 +40,29 @@ function draw(){
 	setDataText("30-days-dis-avg",  Math.floor(Math.random()*24)+1, "");
 	setDataText("7-days-steps-avg",  Math.floor(Math.random()*24)+1, "");
 	setDataText("30-days-steps-avg",  Math.floor(Math.random()*24)+1, "");
-	setDataText("7-days-speed-avg",  Math.floor(Math.random()*24)+1, "");
-	setDataText("30-days-speed-avg",  Math.floor(Math.random()*24)+1, "");
 	setDataText("7-days-calories-avg",  Math.floor(Math.random()*24)+1, "");
 	setDataText("30-days-calories-avg",  Math.floor(Math.random()*24)+1, "");
+	setExpertiseAdvise(Math.floor(Math.random()*3)+1,Math.floor(Math.random()*24)+1);
 }
 
 //draw the charts and change the data according to the json
 function renderByJson(json){
 	if (json.isnull == true) {
 		draw();
+		return 
 	}
-	drawChart(json["7-days-dis"], 7,"7-days-dis");
-	drawChart(json["7-days-steps"], 7, "7-days-steps");
-	drawChart(json["7-days-speed"], 7, "7-days-speed");
-	drawChart(json["7-days-calories"], 7, "7-days-calories");
+	drawChart(json["7-days-dis"], json["7-days-dis"].length,"7-days-dis");
+	drawChart(json["7-days-steps"], json["7-days-steps"].length, "7-days-steps");
+	drawChart(json["7-days-calories"], json["7-days-calories"].length, "7-days-calories");
 
 	drawChart(json["30-days-dis"], 30,"30-days-dis");
-	drawChart(json["30-days-dis"], 30, "30-days-steps");
-	drawChart(json["30-days-dis"], 30, "30-days-speed");
-	drawChart(json["30-days-dis"], 30, "30-days-calories");
+	drawChart(json["30-days-steps"], 30, "30-days-steps");
+	drawChart(json["30-days-calories"], 30, "30-days-calories");
 
 	setDataText("7-days-dis-avg", json["7-days-dis-avg"], "");
 	setDataText("30-days-dis-avg", json["30-days-dis-avg"], "");
 	setDataText("7-days-steps-avg", json["7-days-steps-avg"], "");
 	setDataText("30-days-steps-avg", json["30-days-steps-avg"], "");
-	setDataText("7-days-speed-avg", json["7-days-speed-avg"], "");
-	setDataText("30-days-speed-avg", json["30-days-speed-avg"], "");
 	setDataText("7-days-calories-avg", json["7-days-calories-avg"], "");
 	setDataText("30-days-calories-avg", json["30-days-calories-avg"], "");
 	setExpertiseAdvise(json["yesterday-intensity"], json["7-days-intensity"]);
@@ -89,7 +90,7 @@ function drawChart(data, dataLength, chartId){
 function setExpertiseAdvise(yesterdayIntensity, sevenDayIntensity){
 	var pattern = [];
 	pattern[0] = [
-		"如果你还没有运动的习惯，建议从小强度开始锻炼，先开始做到，坚持在操场每天走两圈，坚持5天左右再选择开始慢跑。",
+		"如果你还没有运动的习惯，建议从小强度开始锻炼，最开始可以尝试坚持在操场每天走两圈，然后坚持5天左右再选择开始慢跑。",
 		"建议可以慢慢增加锻炼时间，坚持按照轻微强度的练习再坚持5天左右。",
 		"根据你的运动情况可以证明你的体力应该是比较好的，建议按照相同的训练强度和训练时间，一周之后看身体状况决定是否改变训练强度。",
 		"建议你多关注自己身体的各方面情况，若有不适，请减小运动量。",
@@ -123,7 +124,7 @@ function setExpertiseAdvise(yesterdayIntensity, sevenDayIntensity){
 		"训练强度基本无变化，建议多留意身体状况，并按照自己的训练强度继续坚持。",
 		"持续的专业训练，建议能够按照标准进行运动前的准备活动。并留意身体状况！",
 	];
-	$("#expertise-advise").text(pattern[sevenDayIntensity-1][yesterdayIntensity-1]);
+	$("#expertise-advise").text(pattern[sevenDayIntensity][yesterdayIntensity]);
 }
 //set data according to the data, "suffix" is the unit
 function setDataText(idString, data, suffix){

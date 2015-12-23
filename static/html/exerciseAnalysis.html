@@ -31,10 +31,6 @@
                         <div style=";text-align:center">步数统计</div>
                     </div>
                     <div style="float:left;margin: auto">
-                        <div id="7-days-speed" class="chart-holder" style="width:250px;height:200px"></div> <!-- /donut-chart -->
-                        <div style=";text-align:center">速度统计</div>
-                    </div>
-                    <div style="float:left;margin: auto">
                         <div id="7-days-calories" class="chart-holder" style="width:250px;height:200px"></div> <!-- /donut-chart -->
                         <div style=";text-align:center">消耗卡路里统计</div>
                     </div>
@@ -61,10 +57,6 @@
                     <div style="float:left;margin: auto">
                         <div id="30-days-steps" class="chart-holder" style="width:250px;height:200px"></div> <!-- /donut-chart -->
                         <div style=";text-align:center">步数统计</div>
-                    </div>
-                    <div style="float:left;margin: auto">
-                        <div id="30-days-speed" class="chart-holder" style="width:250px;height:200px"></div> <!-- /donut-chart -->
-                        <div style=";text-align:center">速度统计</div>
                     </div>
                     <div style="float:left;margin: auto">
                         <div id="30-days-calories" class="chart-holder" style="width:250px;height:200px"></div> <!-- /donut-chart -->
@@ -107,11 +99,6 @@
                                 <td>步数平均值</td>
                                 <td id="7-days-steps-avg">20</td>
                                 <td id="30-days-steps-avg">10</td>
-                            </tr>
-                            <tr class="warning">
-                                <td>速度平均值</td>
-                                <td id="7-days-speed-avg">5</td>
-                                <td id="30-days-speed-avg">6</td>
                             </tr>
                             <tr class="active">
                                 <td>卡路里平均值</td>
@@ -163,12 +150,10 @@
     </div> <!-- /footer -->
     <script>
         var openid;
-        var nickname;
-        var headimgurl;
     </script>
     <script src="/jquery/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src = "getuserinfo.js"></script>
-    <script src="/dataAnalysis/getExerciseData.js" charset="UTF-8"></script>
+    <script src="/dataAnalysis/getExerciseData.js?code=123" charset="UTF-8"></script>
     <script src="/jquery/jquery.flot.js" ></script>
     <script src="/jquery/jquery.flot.pie.js"></script>
     <script src="/jquery/jquery.flot.orderBars.js"></script>

@@ -2,6 +2,12 @@
  * Created by littlepig on 2015/12/20.
  */
 $(document).ready(function(){
+    var code = getUrlParameter('code');
+    $.getJSON("data/getTimeLineData?code="+code, function(data){
+        openid = data.openid;
+        renderByJson(data.data);
+    });
+    /*
     get_userinfo(function(data){
 		openid = data.openid;
 		nickname = data.nickname;
@@ -11,6 +17,7 @@ $(document).ready(function(){
 			renderByJson(data);
 		})
 	});
+	*/
 });
 
 function renderByJson(json){
@@ -51,8 +58,8 @@ function addDays(days){
     }
     else if(days == 0){
         data = {};
-        data["imgString"] = "";
-        data["dataString"] = "There's no data in our database.";
+        data["imgString"] = getImgString("question.png");
+        data["dataString"] = getH2Element("There's no data in our database.");
         addOneElement(data, 0);
     }
 }
@@ -77,7 +84,7 @@ function addOneElement(data, num){
 function getHTMLDict(data){
     if("none" in data){
         return {
-            imgString:getImgString(""),
+            imgString:getImgString("question.png"),
             dataString:getH2Element("Don't forget uploading data~")
         }
     }
@@ -150,6 +157,13 @@ function getHTMLDict(data){
             return {
                 imgString:getImgString("car.png"),
                 dataString:getH2Element("Car") +
+                    getTime(data["startTime"])
+            }
+        }
+        else if(data["subType"] == 4){
+            return {
+                imgString:getImgString("computer.png"),
+                dataString:getH2Element("Activity in Office") +
                     getTime(data["startTime"])
             }
         }

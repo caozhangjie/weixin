@@ -657,6 +657,7 @@ def access_sleeping(user_id):
         report["30-days-reg"] = report["30-days-reg"][0:15]
         if max(report["30-days-reg"]) / (np.median(report["30-days-reg"]) * 10000) > reg_threshold:
             report["regular"] = 1
+    report["30-days-reg"] = []
     report["30-days-deep-avg"] = np.average(thirty_deep_sleep)
     if 0 in thirty_sleep:
         for i in range(len(thirty_sleep)):

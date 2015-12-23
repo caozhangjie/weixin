@@ -2,11 +2,16 @@
  * Created by littlepig on 2015/11/29.
  */
 $(document).ready(function(){
-	$(function () {
-		$('#collapseOne').collapse('show');
-		$('#collapseTwo').collapse('hide');
-		$('#collapseThree').collapse('hide');
+
+	$('#collapseOne').collapse('show');
+	$('#collapseTwo').collapse('hide');
+	$('#collapseThree').collapse('hide');
+	var code = getUrlParameter('code');
+	$.getJSON("data/getsleepdata?code="+code, function(data){
+		openid = data.openid;
+		renderByJson(data.data);
 	});
+	/*
 	get_userinfo(function(data){
 		openid = data.openid;
 		nickname = data.nickname;
@@ -16,7 +21,7 @@ $(document).ready(function(){
 			
 			renderByJson(sleepData);
 		})
-	});
+	});*/
 });
 
 //test drawing
@@ -47,8 +52,8 @@ function renderByJson(json){
 		draw();
 		return;
 	}
-	sleepChart(json["7-days-sleep"], json["7-days-deep-sleep"], 7, "week_sleep_chart");
-	sleepChart(json["30-days-sleep"], json["30-days-deep-sleep"], 30, "month_sleep_chart");
+	sleepChart(json["7-days-sleep"], json["7-days-deep-sleep"], json["7-days-sleep"].length, "week_sleep_chart");
+	sleepChart(json["30-days-sleep"], json["30-days-deep-sleep"], json["30-days-deep-sleep"].length, "month_sleep_chart");
 	setDataText("7-days-avg", json["7-days-avg"], "h");
 	setDataText("30-days-avg",json["30-days-avg"], "h");
 	setDataText("7-days-deep-avg", json["7-days-deep-avg"], "h");
@@ -111,28 +116,37 @@ function setSleepDeepRate(idString, data){
 
 //set the advise
 function setExpertiseAdvise(stark_sleep, avg_compare, sleep_time, anxious, regular){
+	if(sleep_time == 4){
+		$("#expertise-advice").text("用户年龄太小，不适合佩戴手环！");
+		return;
+	}
 	var sleep_time_string = [
-		"您最近7天睡眠时间总体过多",
-		"您最近7天睡眠时间总体过少",
-		"您最近7天睡眠时间总体正常"
+		"",
+		"您最近7天睡眠时间总体过多，",
+		"您最近7天睡眠时间总体过少，",
+		"您最近7天睡眠时间总体正常，"
 	];
 	var stark_sleep_string = [
-		"每天睡眠时间刚好合适",
-		"其中一两天睡太久",
-		"其中一两天睡太少",
+		"每天睡眠时间刚好合适，",
+		"其中一两天睡太久，",
+		"其中一两天睡太少，",
 	];
 	if(avg_compare != 1 && avg_compare != 2){
 		avg_compare = 3;
 	}
 	var avg_compare_string = [
-		"和过去30天相比，您的睡眠时间明显变少，注意休息",
-		"和过去30天相比，您的睡眠时间明显增多，不可太懒哟",
-		"和过去30天相比，您的睡眠时间没有明显变化",
+		"",
+		"和过去30天相比，您的睡眠时间明显变少，注意休息，",
+		"和过去30天相比，您的睡眠时间明显增多，不可太懒哟，",
+		"和过去30天相比，您的睡眠时间没有明显变化，",
 	];
+	if(anxious != 1 && anxious != 2){
+		anxious = 0;
+	}
 	var anxious_string = [
-		"最近7天您一直处于焦虑状态，建议您放松心情，不要给自己太大的压力",
-		"最近1个月您一直处于焦虑状态，建议您去学校的心理咨询中心释放一下情绪",
-		" 最近7天您的睡眠情况良好",
+		"",
+		"最近7天您一直处于焦虑状态，建议您放松心情，不要给自己太大的压力，",
+		"最近1个月您一直处于焦虑状态，建议您去学校的心理咨询中心释放一下情绪，",
 	];
 	if(regular != 0){
 		regular = 1;
@@ -143,10 +157,10 @@ function setExpertiseAdvise(stark_sleep, avg_compare, sleep_time, anxious, regul
 		
 	];
 	$("#expertise-advice").text(
-		sleep_time_string[sleep_time - 1] + ',' + 
-		stark_sleep_string[stark_sleep] + ',' + 
-		avg_compare_string[avg_compare - 1] + ',' +
-		anxious_string[anxious - 1] + ',' + 
+		sleep_time_string[sleep_time] + 
+		stark_sleep_string[stark_sleep] + 
+		avg_compare_string[avg_compare] +
+		anxious_string[anxious ] + 
 		regular_string[regular] + '。'
 		);
 }
